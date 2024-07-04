@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "b78-sbucket"
-    key    = "test2/dev/sfile"
+    key    = "ami/state"
     region = "us-east-1"
   }
 }
