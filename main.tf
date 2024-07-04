@@ -4,7 +4,7 @@ resource "aws_instance" "ami" {
   vpc_security_group_ids = [data.aws_security_group.selected.id]
 
   tags = {
-    Name  = "ami-server"
+    Name  = "master-server"
   }
 }
 
@@ -23,4 +23,10 @@ resource "null_resource" "ansible" {
       "sudo pip3.11 install ansible hvac",
         ]
   }
+}
+
+resource "aws_ami_from_instance" "ami" {
+  depends_on         =  [null_resource.ansible]
+  name               = "golden-ami-${formatdate("DD-MM-YY", timestamp())}"
+  source_instance_id = aws_instance.ami.id
 }
