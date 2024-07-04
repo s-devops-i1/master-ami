@@ -1,4 +1,7 @@
-bucket = "b78-sbucket"
-key    = "test2/dev/sfile"
-region = "us-east-1"
-
+terraform {
+  backend "s3" {
+    bucket = "b78-sbucket"
+    key    = "test2/dev/sfile"
+    region = "us-east-1"
+  }
+}
